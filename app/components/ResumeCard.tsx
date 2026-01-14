@@ -1,0 +1,36 @@
+import React from 'react'
+import {Link} from "react-router";
+import ScoreCircle from "~/components/ScoreCircle";
+
+const ResumeCard = ({resume}: {resume: Resume }) => {
+    const {id, jobTitle, companyName,feedback, imagePath, resumePath}= resume;
+
+    return (
+  <Link to={`resume/${id}`} className="resume-card animate-in fade-in duration-1000 mt-2">
+      <div className='resume-card-header'>
+          <div className='flex flex-col gap-2'>
+              <h2 className='text-black! font-bold wrap-break-word'>
+                  {companyName}
+              </h2>
+              <h3 className='text-gray-500 text-lg wrap-break-word '>{jobTitle}</h3>
+          </div>
+          <div className='flex-shink-0'>
+              <ScoreCircle score={feedback.overallScore}/>
+          </div>
+      </div>
+      <div className='gradient-border animate-in fade-in duration-1000' >
+          <div className='w-full h-full'>
+              {/*<img src={resumePath} alt='resume' className='w-full h-87.5 max:sm-h[200px] object-cover object-top'/>*/}
+              <img src={imagePath} alt='user'  className='w-full h-87.5 max:sm-h[200px] object-cover object-top'/>
+          </div>
+
+
+
+      </div>
+
+
+
+  </Link>
+    )
+}
+export default ResumeCard

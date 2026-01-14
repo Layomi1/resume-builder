@@ -1,13 +1,34 @@
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
+import Navbar from  '../components/Navbar'
+import  {resumes} from '../../constants';
+import ResumeCard from "~/components/ResumeCard";
+
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "Resumee" },
+    { name: "description", content: "Smart feedback for your dream Job!" },
   ];
 }
 
 export default function Home() {
-  return <Welcome />;
+  return <main className="bg-[url('/images/bg-main.svg')] bg-cover">
+    <Navbar/>
+    <section className='main-section'>
+      <article className='page-heading py-16'>
+        <h1>Track your Applications & Resume Ratings</h1>
+        <h2>Review your submissions and get AI powered feedbacks</h2>
+      </article>
+      {resumes.length > 0 &&
+          (<div className='resumes-section'
+          >
+            {
+              resumes.map(resume =>(
+                  <ResumeCard key={resume.id} resume={resume} />
+              ))
+            }
+          </div>)
+      }
+    </section>
+  </main>;
 }
